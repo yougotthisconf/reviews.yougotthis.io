@@ -1,0 +1,66 @@
+---
+layout: base
+permalink: review/
+---
+{% include header %}
+
+<div id="app" class='px-6 max-w-screen-full my-6 max-w-xl mx-auto'>
+    <div v-if='talk'>
+        <h2 class='text-xl md:text-3xl font-bold text-gray-900'>{§ talk.fields['Talk Title'] §}</h2>
+
+        <p class="mt-4 font-mono">Talk ID {§ talk.fields['Friendly'] §}</p>
+
+        <div class="bg-gray-100 rounded-lg border-solid border-2 border-gray-500 my-5">
+            <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Talk Abstract</h3>
+                <div class="mt-2 text-sm leading-5 text-gray-800">
+                    <p>{§ talk.fields['Talk Abstract'] §}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-100 rounded-lg border-solid border-2 border-gray-500 my-5" v-if="talk.fields['Talk Details']">
+            <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Talk Details</h3>
+                <div class="mt-2 text-sm leading-5 text-gray-800">
+                    <p>{§ talk.fields['Talk Details'] §}</p>
+                </div>
+            </div>
+        </div>
+
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium leading-5 bg-pink-100 text-pink-800 mr-3 mb-3" v-for="tag in talk.fields['Talk Themes']">{§ tag §}</span>
+
+        <div class="bg-pink-100 rounded-lg border-solid border-2 border-pink-500 px-4 py-5 sm:p-6 mt-5">
+            <label for="score" class="block text-sm font-medium leading-5 text-gray-700">
+                Score
+            </label>
+            <div class="inline-block relative w-full">
+                <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" id="score" v-model="talk.fields[reviewer + ' Score']">
+                    <option disabled value="">Select score</option>
+                    <option value="1">1 - Strong reject</option>
+                    <option value="2">2 - Reject</option>
+                    <option value="3">3 - Weak Accept</option>
+                    <option value="4">4 - Accept</option>
+                    <option value="5">5 - Strong Accept</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                </div>
+            </div>
+
+            <div class='mt-5'>
+                <label for="notes" class="block text-sm font-medium leading-5 text-gray-700">
+                    Notes (optional and internal-only)
+                </label>
+                <input class="shadow appearance-none border border-gray-400 hover:border-gray-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="notes" type="text" v-model="talk.fields[reviewer + ' Notes']">
+            </div>
+
+            <span class="rounded-md shadow-sm px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-pink-600 hover:bg-pink-500 focus:outline-none focus:border-pink-700 focus:shadow-outline-pink active:bg-pink-700 transition ease-in-out duration-150 mt-5 w-full block text-center cursor-pointer" @click="updateTalk">Submit</span>
+        </div>
+
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="/assets/js/reviews.js"></script>
