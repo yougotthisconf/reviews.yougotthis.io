@@ -5,19 +5,17 @@
         <table class="divide-y divide-gray-200 w-full">
           <thead>
             <tr>
-              <th class="p-2 text-xs bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Title</th>
-              <th class="p-2 text-xs bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Abstract</th>
-              <th class="p-2 text-xs bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Score</th>
-              <th class="p-2 text-xs bg-gray-50"></th>
+              <th class="p-2 text-sm bg-gray-50 text-left text-sm leading-4 font-medium text-gray-800 uppercase tracking-wider">Title</th>
+              <th class="p-2 text-sm bg-gray-50 text-left text-sm leading-4 font-medium text-gray-800 uppercase tracking-wider">Score</th>
+              <th class="p-2  bg-gray-50"></th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
             <tr v-for="talk in talks">
-              <td class="p-2 text-xs align-text-top text-sm leading-5 text-gray-500">{§ talk.fields['Talk Title'] §}</td>
-              <td class="p-2 text-xs align-text-top text-sm leading-5 text-gray-500 hidden md:table-cell">{§ talk.fields['Talk Abstract'] §}</td>
-              <td class="p-2 text-xs align-text-top text-sm leading-5 text-gray-500" v-if="talk.fields[reviewer + ' Score']">{§ talk.fields[reviewer + ' Score'] §}</td>
-              <td class="p-2 text-xs align-text-top text-sm leading-5 text-gray-500" v-else>N/A</td>
-              <td class="p-2 text-xs align-text-top text-right text-sm leading-5 font-medium">
+              <td class="p-2 text-md align-text-top leading-5 text-gray-800">{§ talk.fields['Talk Title'] §}</td>
+              <td class="p-2 text-md align-text-top leading-5 text-gray-800" v-if="talk.fields[reviewer + ' Score']">{§ talk.fields[reviewer + ' Score'] §}</td>
+              <td class="p-2 text-md align-text-top leading-5 text-gray-800" v-else>N/A</td>
+              <td class="p-2 text-md align-text-top text-right leading-5 font-medium">
                 <a :href="`/review?id=${talk.fields['ID']}&reviewer=${reviewer}`" class="text-pink-600 hover:text-pink-900">Review</a>
               </td>
             </tr>
